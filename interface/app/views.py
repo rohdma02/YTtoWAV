@@ -1,3 +1,4 @@
+import io
 import os
 import wave
 from flask import Blueprint, render_template, request, send_file, url_for
@@ -71,11 +72,16 @@ def index():
             info = ydl.extract_info(url, download=True)
             filename = ydl.prepare_filename(info)
             wav_file = os.path.splitext(filename)[0] + '.wav'
-            wav_file_path = os.path.join(output_dir, wav_file)
-            is_authentic = is_authentic_wav(wav_file_path)
-            wav_specs = get_wav_specs(wav_file_path)
-            download_url = url_for('main.download_file', filename=wav_file)
-            return render_template('index.html', download_url=download_url, is_authentic=is_authentic, wav_specs=wav_specs)
+            is_authentic = is_authentic_wav(wav_file)
+            wav_specs = get_wav_specs(wav_file)
+
+            # Open the WAV file in binary mode
+            with open(wav_file, 'rb') as file:
+                # Create a file object from the binary data
+                file_object = io.BytesIO(file.read())
+
+            # Send the file object to the user's browser for download
+            return send_file(file_object, mimetype='audio/wav', as_attachment=True, download_name=os.path.basename(wav_file))
 
     # Clear the form and input if it's a GET request or after form submission
     return render_template('index.html', download_url=download_url, is_authentic=is_authentic, wav_specs=wav_specs)
@@ -84,7 +90,14 @@ def index():
 @main.route('/download/<filename>')
 def download_file(filename):
     wav_file_path = os.path.join(output_dir, filename)
-    return send_file(wav_file_path, as_attachment=True)
+
+    # Open the WAV file in binary mode
+    with open(wav_file_path, 'rb') as file:
+        # Create a file object from the binary data
+        file_object = io.BytesIO(file.read())
+
+    # Send the file object to the user's browser for download
+    return send_file(file_object, mimetype='audio/wav', as_attachment=True, download_name=filename)
 
 
 @main.route('/about')
