@@ -1,7 +1,7 @@
 import io
 import os
 import wave
-from flask import Blueprint, render_template, request, send_file, url_for
+from flask import Blueprint, render_template, request, send_file
 
 import yt_dlp
 

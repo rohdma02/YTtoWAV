@@ -1,5 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2 class="text-center">Login Page Under Development</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Login</h2>
+                    <form method="POST" action="/login">
+                        <div class="form-group">
+                            <label for="username" class="form-control-label">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-control-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" id="remember" name="remember" class="form-check-input">
+                            <label for="remember" class="form-check-label">Remember Me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <button id="google-login-btn" class="btn btn-outline-primary">Login with Google</button>
+                        <a href="/register" class="btn btn-link">Register</a>
+                        <a href="#" class="btn btn-link">Forgot Password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
