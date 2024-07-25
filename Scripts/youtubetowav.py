@@ -4,7 +4,7 @@ import sys
 import os
 
 # Create the "music" directory if it doesn't exist
-output_dir = "music"
+output_dir = "C:/Users/matro/OneDrive/Desktop/music"
 os.makedirs(output_dir, exist_ok=True)
 
 ydl_opts = {
@@ -14,7 +14,6 @@ ydl_opts = {
         'key': 'FFmpegExtractAudio',
         'preferredcodec': 'wav',
     }],
-    'ffmpeg_location': 'C:\\Users\\matro\\Downloads\\ffmpeg-master-latest-win64-gpl\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe',
 }
 
 

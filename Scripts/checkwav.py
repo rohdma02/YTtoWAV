@@ -22,7 +22,7 @@ def is_authentic_wav(file_path):
 
 
 # Usage
-file_path = 'music/Blood (Tiefschwarz Remix).wav'
+file_path = 'music\Darude - Sandstorm.wav'
 
 # Usage
 if is_authentic_wav(file_path):

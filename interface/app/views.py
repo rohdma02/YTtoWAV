@@ -1,3 +1,4 @@
+from flask import send_from_directory
 import io
 import os
 import wave
@@ -110,6 +111,11 @@ def tracks():
     return render_template('tracks.html')
 
 
+@main.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(main.static_folder, filename)
+
+
 @main.route('/login')
 def login():
     return render_template('login.html')
@@ -118,6 +124,16 @@ def login():
 @main.route('/logout')
 def logout():
     return render_template('logout.html')
+
+
+@main.route('/logged')
+def logged():
+    user_data = {
+        'userName': request.args.get('userName', ''),
+        'userEmail': request.args.get('userEmail', ''),
+        'userProfilePicture': request.args.get('userProfilePicture', '')
+    }
+    return render_template('logged.html', user=user_data)
 
 
 @main.route('/register')
