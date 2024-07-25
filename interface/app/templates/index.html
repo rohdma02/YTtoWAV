@@ -10,29 +10,6 @@
         </div>
     </form>
 
-    {% if download_url %}
-    <div class="alert alert-success" role="alert">
-        {% if is_authentic %}
-        <span class="text-success">The downloaded file is an authentic lossless WAV.</span>
-        {% else %}
-        <span class="text-danger">The downloaded file is not an authentic lossless WAV.</span>
-        {% endif %}
-    </div>
-
-    <div class="card mb-3">
-        <div class="card-body">
-            <h4 class="card-title">WAV File Specs</h4>
-            {% if wav_specs %}
-            <p class="card-text">Number of Channels: {{ wav_specs.num_channels }}</p>
-            <p class="card-text">Sample Width: {{ wav_specs.sample_width }} bytes</p>
-            <p class="card-text">Sample Rate: {{ wav_specs.sample_rate }} Hz</p>
-            <p class="card-text">Number of Frames: {{ wav_specs.num_frames }}</p>
-            <p class="card-text">Duration: {{ '{:.2f}'.format(wav_specs.duration) }} seconds</p>
-            {% else %}
-            <p class="card-text">No WAV file specs available.</p>
-            {% endif %}
-        </div>
-    </div>
     {% endif %}
 </div>
 {% endblock %}
