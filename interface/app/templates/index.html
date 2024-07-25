@@ -2,14 +2,24 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="text-center mb-4">YouTube Link to WAV File Converter</h2>
-    <form method="POST" action="{{ url_for('main.index') }}">
+    <h3 class="text-center mb-4">YouTube Link Converter</h3>
+    <form id="converterForm" method="POST" action="{{ url_for('main.index') }}">
         <div class="input-group mb-3">
             <input type="text" class="form-control" id="url" name="url" placeholder="Enter YouTube URL" required>
             <button type="submit" class="btn btn-primary">Convert & Download</button>
         </div>
     </form>
-
-    {% endif %}
 </div>
+
+<script>
+    document.getElementById('converterForm').addEventListener('submit', function (e) {
+        e.preventDefault();  // Prevent immediate form submission
+
+        // Submit the form
+        this.submit();
+
+        // Clear the input field
+        document.getElementById('url').value = '';
+    });
+</script>
 {% endblock %}

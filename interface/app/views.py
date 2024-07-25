@@ -2,7 +2,6 @@ from flask import send_from_directory
 import io
 import os
 from flask import Blueprint, render_template, request, send_file
-
 import yt_dlp
 
 main = Blueprint('main', __name__)
@@ -37,7 +36,12 @@ def index():
                 file_object = io.BytesIO(file.read())
 
             # Send the file object to the user's browser for download
-            return send_file(file_object, mimetype='audio/wav', as_attachment=True, download_name=os.path.basename(wav_file))
+            response = send_file(file_object, mimetype='audio/wav', as_attachment=True, download_name=os.path.basename(wav_file))
+
+            # Delete the file from the server
+            os.remove(wav_file)
+
+            return response
 
     # Clear the form and input if it's a GET request or after form submission
     return render_template('index.html', download_url=download_url)
@@ -53,7 +57,12 @@ def download_file(filename):
         file_object = io.BytesIO(file.read())
 
     # Send the file object to the user's browser for download
-    return send_file(file_object, mimetype='audio/wav', as_attachment=True, download_name=filename)
+    response = send_file(file_object, mimetype='audio/wav', as_attachment=True, download_name=filename)
+
+    # Delete the file from the server
+    os.remove(wav_file_path)
+
+    return response
 
 
 @main.route('/about')
