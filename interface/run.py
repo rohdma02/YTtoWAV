@@ -1,12 +1,7 @@
-from app import create_app, db
-from app.models import User, Track, TopTrack
+from app import create_app
+
 
 app = create_app()
-
-
-@app.shell_context_processor
-def make_shell_context():
-    return {'db': db, 'User': User, 'Track': Track, 'TopTrack': TopTrack}
 
 
 if __name__ == '__main__':
