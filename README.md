@@ -1,6 +1,6 @@
 # YouTube Music Downloader
 
-A web application built with Flask to download music from YouTube. This project allows users to download audio from YouTube videos in MP3 format.
+A web application built with Flask to download music from YouTube. This project allows users to download audio from YouTube videos in MP3 format and then convert to WAV format.
 
 ## Project Structure
 
